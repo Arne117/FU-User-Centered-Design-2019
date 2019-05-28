@@ -5,7 +5,7 @@
         .SourceCode-item(
           v-for='(item, index) in 50'
           :key='index'
-          :class='[index === 10 ? "SourceCode-comment" : "", index === 20 ? "SourceCode-highlight" : ""]'
+          :class='[index === 4 ? "SourceCode-comment" : "", index === 10 ? "SourceCode-highlight" : ""]'
           :style='{ width: (Math.floor(Math.random()*40) + 5) + "%", marginLeft: (Math.floor(Math.random()*10)) >=5 ? "80px" : "40px"  }'
           )
           .SourceCode-item--content

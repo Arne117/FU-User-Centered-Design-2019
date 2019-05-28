@@ -1,16 +1,23 @@
-# Vue.js SPA
+# User-Centered-Design
+User-Centered Design SoSe19
+
+## Install
+Download [Node.js](https://nodejs.org/en/)
+
+Open a Terminal or CMD and navigate to the same folder this file is in
 
 ## Build Setup
 
 ``` bash
-# install dependencies
+# install dependencies once
 npm install
+```
 
+## Run
+
+```bash
 # serve with hot reload at localhost:8080
 npm run dev
-
-# or
-npm start
 
 # build for production with minification
 npm run build

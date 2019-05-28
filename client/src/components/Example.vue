@@ -1,10 +1,13 @@
 <template lang='pug'>
-  div Test
+  .Example Example component
+    div same as <div></div> tag
+    .className render
+    //- 
 </template>
 
 <script>
 export default {
-  name: 'Prototype',
+  name: 'Example',
   data () {
     return {}
   }

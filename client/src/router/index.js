@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // components
-import Home from '@/components/Home'
+import Main from '@/components/Main'
 
 Vue.use(Router)
 
@@ -16,10 +16,10 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      component: Home,
-      name: 'Home'
+      component: Main,
+      name: 'Main'
     },
-    { path: '*', redirect: { name: 'Home' } }
+    { path: '*', redirect: { name: 'Main' } }
   ]
 })
 

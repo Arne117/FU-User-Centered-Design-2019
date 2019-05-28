@@ -1,21 +1,15 @@
 <template lang='pug'>
   #app
-    Header
-    .PageContent
-      transition(name='fade' mode='out-in')
-        router-view
-    Footer
+    transition(name='fade' mode='out-in')
+      router-view
 </template>
 
 <script>
-import Header from './components/page/Header'
-import Footer from './components/page/Footer'
 
 export default {
   name: 'app',
-  components: {
-    Header,
-    Footer
+  data () {
+    return {}
   }
 }
 </script>
@@ -28,10 +22,6 @@ export default {
   color #2c3e50
   text-align center
   background-color white
-
-  .PageContent {
-    min-height 50vh
-  }
 
   .btn-outline-primary {
     color $darkGreen

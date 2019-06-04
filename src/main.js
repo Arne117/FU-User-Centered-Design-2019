@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import VueSweetalert2 from 'vue-sweetalert2'
 import vClickOutside from 'v-click-outside'
+import VueHighlightJS from 'vue-highlightjs'
 
 import App from './App'
 import router from './router'
@@ -11,6 +12,7 @@ import { store } from './store/store'
 // Vue plugins
 Vue.use(VueSweetalert2)
 Vue.use(vClickOutside)
+Vue.use(VueHighlightJS)
 
 // Vue components
 

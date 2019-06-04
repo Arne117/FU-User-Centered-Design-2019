@@ -1,35 +1,72 @@
 <template lang='pug'>
   .SourceCode
     .SourceCode-wrapper Sourcecode
-      .SourceCode-content
-        .SourceCode-item(
-          v-for='(item, index) in 50'
-          :key='index'
-          :class='[index === 4 ? "SourceCode-comment" : "", index === 10 ? "SourceCode-highlight" : ""]'
-          :style='{ width: (Math.floor(Math.random()*40) + 5) + "%", marginLeft: (Math.floor(Math.random()*10)) >=5 ? "80px" : "40px"  }'
-          )
-          .SourceCode-item--content
+      pre(v-highlightjs='sourcecode' contenteditable)
+        code.javascript
 </template>
 
 <script>
 export default {
   name: 'SourceCode',
   data () {
-    return {}
+    return {
+      sourcecode: `
+import Vue from 'vue'
+import VueSweetalert2 from 'vue-sweetalert2'
+import vClickOutside from 'v-click-outside'
+import VueHighlightJS from 'vue-highlightjs'
+
+import App from './App'
+import router from './router'
+import { store } from './store/store'
+
+Vue.use(VueSweetalert2)
+Vue.use(vClickOutside)
+Vue.use(VueHighlightJS)
+
+Vue.mixin({
+  methods: {
+    $swalError (opt = {}, callback) {
+      this.$swal({
+        title: opt.title || 'Oh No!',
+        text: 'Something went wrong.',
+        type: 'error',
+        confirmButtonText: opt.confirmButtonText || 'ok'
+      }).then(callback)
+    },
+    $swalSuccess (opt = {}, callback) {
+      this.$swal({
+        title: opt.title || 'Great!',
+        text: opt.text || 'Done',
+        type: 'success',
+        confirmButtonText: opt.confirmButtonText || 'ok'
+      }).then(callback)
+    }
+  }
+})
+
+new Vue({
+  el: '#app',
+  router,
+  store,
+  template: '<App/>',
+  components: { App }
+})`
+    }
   }
 }
 </script>
 
 <style lang='stylus' scoped>
   .SourceCode {
+
     flex 80%
     display flex
 
     background-color $grey
 
     text-align left
-    color #fff
-
+    color $grey
     &-wrapper {
       padding 15px
       width 100%

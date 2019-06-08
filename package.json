@@ -102,7 +102,7 @@
     "npm": ">= 3.0.0"
   },
   "browserslist": [
-    "> 1%",
+    "> 2%",
     "last 5 versions",
     "not ie <= 11"
   ]

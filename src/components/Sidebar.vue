@@ -47,7 +47,10 @@ export default {
   padding 0 .5em
   & * {
     margin-left 15px
-    width calc(100vw - @margin-left)
+
+    // Correct way to to make use of already defined values and it works fine in dev. Sadly there is a bug within the current setup when building for production with the cssnano plugin which requires the postcss-calc plugin where an error occurs. Somehow the associated value doesn't get resolved to its actual value but instead to just the variable name "margin-left". So until there is a solution to this, we have to use the old syntax.
+    // width calc(100vw - @margin-left)
+    width calc(100vw - 15px)
   }
 
   &-item {

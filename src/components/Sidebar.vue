@@ -1,68 +1,65 @@
 <template lang='pug'>
   .Sidebar
     .Sidebar-wrapper
-      span Sidebar
-      .TreeView
-        .TreeView-item(
-          v-for='item in 25'
-          :style='{ width: (Math.floor(Math.random()*50) + 20) + "%", marginLeft: (Math.floor(Math.random()*10)) >=5 ? "30px" : "10px"  }'
-          )
-          .TreeView-item--content
+      strong.Sidebar-Title Projects
+      .TreeView(v-for='proj in getAllProjects' :key='proj.name')
+        .TreeView-item {{ proj.name }}
+        div(v-if="proj.isOpen")
+          .TreeView-item(v-for="file in proj.files" :key="file") {{ file }}
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: 'Sidebar',
-  data () {
+  data() {
     return {}
+  },
+  computed:{
+    ...mapGetters({
+      'getAllProjects': 'Project/getAllProjects'
+    })
   }
+
 }
 </script>
 
 <style lang='stylus' scoped>
 .Sidebar {
-  flex 10%
   display flex
+  flex 10%
   max-height 100%
 
   text-align left
   overflow hidden
-  
-  &:hover {
-    cursor not-allowed
-  }
+  cursor default
 
   &-wrapper {
-    padding 15px
+    padding 5px
     width 100%
     max-height calc(100vh - 43px)
     overflow-y scroll
-  }  
+  }
 }
 
 .TreeView {
   padding 0 .5em
+  & * {
+    margin-left 15px
+    width calc(100vw - @margin-left)
+  }
 
   &-item {
-      width 100px
-      height 21px
-      padding 5px
-      margin-top 4px
-
-      &:first-child {
-        margin-left 0!important
-      }
-
-      &:hover {
-        filter drop-shadow(0 0 .2rem $green)
-      }
-
-      &--content {
-        width 100%
-        height 100%
-        border-radius 10px
-        background-color $darkGrey
-      }
+    padding 1px 5px
+    overflow: hidden;
+    white-space: nowrap;
+    &:hover {
+      //filter drop-shadow(0 0 .2rem $green)
+      background-color rgba(111, 185, 143, 0.1)
     }
+  }
+
 }
+
 </style>

@@ -25,9 +25,12 @@ export default {
 
 <style lang='stylus' scoped>
   .Bottombar {
-    position sticky
+    position fixed
+    bottom 0
     display flex
     padding 0 1em
+    width 100%
+
     color white
 
     background-color rgb(0, 122, 204)

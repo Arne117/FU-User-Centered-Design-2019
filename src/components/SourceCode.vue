@@ -10,8 +10,7 @@ export default {
   name: 'SourceCode',
   data () {
     return {
-      sourcecode: `
-import Vue from 'vue'
+      sourcecode: `import Vue from 'vue'
 import VueSweetalert2 from 'vue-sweetalert2'
 import vClickOutside from 'v-click-outside'
 import VueHighlightJS from 'vue-highlightjs'

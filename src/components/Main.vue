@@ -6,19 +6,22 @@
       SourceCode
       //- keep-alive
       //-   component(:is='state')
+    Bottombar
 </template>
 
 <script>
 import Header from './Header'
 import Sidebar from './Sidebar'
 import SourceCode from './SourceCode'
+import Bottombar from './Bottombar'
 
 export default {
   name: 'Home',
   components: {
     Header,
     Sidebar,
-    SourceCode
+    SourceCode,
+    Bottombar
   },
   data () {
     return {}
@@ -32,7 +35,7 @@ export default {
   }
 
   .PageContent {
-    min-height 95vh
+    min-height 90vh
     display flex
     flex-direction row
     justify-content center

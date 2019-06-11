@@ -16,11 +16,18 @@ const state = [
 
 const getters = {
   getAllProjects: projects => projects
+
 };
 
-const actions = {};
+const actions = {
 
-const mutations = {};
+};
+
+const mutations = {
+  switchOpenState: (projects, index) => {
+    projects[index].isOpen = !projects[index].isOpen
+  }
+};
 
 
 

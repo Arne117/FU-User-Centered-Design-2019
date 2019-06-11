@@ -2,14 +2,17 @@
   .Sidebar
     .Sidebar-wrapper
       strong.Sidebar-Title Projects
-      .TreeView(v-for='proj in getAllProjects' :key='proj.name')
-        .TreeView-item {{ proj.name }}
-        div(v-if="proj.isOpen")
-          .TreeView-item(v-for="file in proj.files" :key="file") {{ file }}
+      .TreeViewRoot(v-for='proj, index in getAllProjects' :key='proj.name' @dblclick="switchOpenState(index)")
+        .TreeViewItem
+          i.fa.fa-folder
+          span {{ proj.name }}
+        .TreeViewItem.TreeViewIndent(v-if="proj.isOpen" v-for="file in proj.files" :key="file")
+          i.fa.fa-file
+          span {{ file }}
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: 'Sidebar',
@@ -20,12 +23,18 @@ export default {
     ...mapGetters({
       'getAllProjects': 'Project/getAllProjects'
     })
+  },
+  methods: {
+    ...mapMutations({
+      'switchOpenState': 'Project/switchOpenState'
+    })
   }
 
 }
 </script>
 
 <style lang='stylus' scoped>
+
 .Sidebar {
   display flex
   flex 10%
@@ -43,26 +52,26 @@ export default {
   }
 }
 
-.TreeView {
-  padding 0 .5em
-  & * {
-    margin-left 15px
-
-    // Correct way to to make use of already defined values and it works fine in dev. Sadly there is a bug within the current setup when building for production with the cssnano plugin which requires the postcss-calc plugin where an error occurs. Somehow the associated value doesn't get resolved to its actual value but instead to just the variable name "margin-left". So until there is a solution to this, we have to use the old syntax.
-    // width calc(100vw - @margin-left)
-    width calc(100vw - 15px)
+.TreeViewRoot {
+  user-select none
+  // padding 0 0 0 .5em
+  i {
+    margin-right 4px
   }
+}
 
-  &-item {
-    padding 1px 5px
-    overflow: hidden;
-    white-space: nowrap;
-    &:hover {
-      //filter drop-shadow(0 0 .2rem $green)
-      background-color rgba(111, 185, 143, 0.1)
-    }
+.TreeViewIndent {
+  margin-left 15px
+}
+
+.TreeViewItem {
+  padding 1px 5px
+  overflow hidden
+  white-space nowrap
+  &:hover {
+   //filter drop-shadow(0 0 .2rem $green)
+    background-color rgba(111, 185, 143, 0.5)
   }
-
 }
 
 </style>

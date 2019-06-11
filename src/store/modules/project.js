@@ -5,10 +5,10 @@ const state = [
     name: 'Reader Writer Problem',
     lastModified: Moment('2019-05-29'),
     files: [
-      'Main.java',
-      'Test.java',
-      'Reader.java',
-      'Writer.java'
+      'Main.vue',
+      'Test.js',
+      'Reader.js',
+      'Writer.js'
     ],
     isOpen: true
   }

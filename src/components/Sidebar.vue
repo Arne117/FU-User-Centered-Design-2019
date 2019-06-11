@@ -2,7 +2,7 @@
   .Sidebar
     .Sidebar-wrapper
       strong.Sidebar-Title Projects
-      .TreeViewRoot(v-for='proj, index in getAllProjects' :key='proj.name' @dblclick="switchOpenState(index)")
+      .TreeViewRoot(v-for='proj, index in getAllProjects' :key='proj.name' @click="switchOpenState(index)")
         .TreeViewItem
           i.fa.fa-folder
           span {{ proj.name }}
@@ -54,7 +54,6 @@ export default {
 
 .TreeViewRoot {
   user-select none
-  // padding 0 0 0 .5em
   i {
     margin-right 4px
   }

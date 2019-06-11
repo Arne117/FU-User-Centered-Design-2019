@@ -12,13 +12,17 @@
 import Header from './Header'
 import Sidebar from './Sidebar'
 import SourceCode from './SourceCode'
+import Saros from './Saros'
+import Wizard from './Wizard'
 
 export default {
   name: 'Home',
   components: {
     Header,
     Sidebar,
-    SourceCode
+    SourceCode,
+    Saros,
+    Wizard
   },
   data () {
     return {}

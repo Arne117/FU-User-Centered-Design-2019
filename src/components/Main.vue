@@ -14,6 +14,8 @@ import Header from './Header'
 import Sidebar from './Sidebar'
 import SourceCode from './SourceCode'
 import Bottombar from './Bottombar'
+import Saros from './Saros'
+import Wizard from './Wizard'
 
 export default {
   name: 'Home',
@@ -21,7 +23,9 @@ export default {
     Header,
     Sidebar,
     SourceCode,
-    Bottombar
+    Bottombar,
+    Saros,
+    Wizard
   },
   data () {
     return {}

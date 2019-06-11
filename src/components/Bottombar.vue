@@ -1,7 +1,9 @@
 <template lang='pug'>
   .Bottombar
     .Bottombar-left
-      span master*
+      span
+        i.fa.fa-code-fork
+        | master*
         i.fa.fa-refresh
         i.fa.fa-exclamation-circle
         | 0
@@ -14,7 +16,7 @@
         span UTF-8
         span LF
         span Vue
-        i.fa.fa-bell 1
+        i.fa.fa-bell
 </template>
 
 <script>
@@ -28,10 +30,11 @@ export default {
     position fixed
     bottom 0
     display flex
-    padding 0 1em
+    padding 0 .5em
     width 100%
 
     color white
+    user-select none
 
     background-color rgb(0, 122, 204)
 

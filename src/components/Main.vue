@@ -2,6 +2,7 @@
   #IDE
     Header
     .PageContent
+      Iconbar
       Sidebar
       SourceCode
       //- keep-alive
@@ -16,6 +17,7 @@ import SourceCode from './SourceCode'
 import Bottombar from './Bottombar'
 import Saros from './Saros'
 import Wizard from './Wizard'
+import Iconbar from './Iconbar'
 
 export default {
   name: 'Home',
@@ -25,7 +27,8 @@ export default {
     SourceCode,
     Bottombar,
     Saros,
-    Wizard
+    Wizard,
+    Iconbar
   },
   data () {
     return {}

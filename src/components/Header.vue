@@ -14,9 +14,6 @@
             src='@/assets/saros-logo.png'
             @click='toggleSaros()'
           )
-    .SarosView(
-      v-show='displaySaros'
-      )
 </template>
 
 <script>

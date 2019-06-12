@@ -2,8 +2,8 @@
   .Sidebar
     .Sidebar-wrapper
       strong.Sidebar-Title Projects
-      .TreeViewRoot(v-for='proj, index in getAllProjects' :key='proj.name' @click="switchOpenState(index)")
-        .TreeViewItem
+      .TreeViewRoot(v-for='proj, index in getAllProjects' :key='proj.name')
+        .TreeViewItem(@click="switchOpenState(index)")
           i.fa.fa-folder
           span {{ proj.name }}
         .TreeViewItem.TreeViewIndent(v-if="proj.isOpen" v-for="file in proj.files" :key="file")

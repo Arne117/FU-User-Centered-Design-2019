@@ -11,11 +11,29 @@ const state = [
       'Writer.js'
     ],
     isOpen: true
+  },
+  {
+    name: 'Test',
+    lastModified: Moment('2019-05-28'),
+    files: [
+      'test.js',
+    ],
+    isOpen: false
+  },
+  {
+    name: 'Vue',
+    lastModified: Moment('2019-03-11'),
+    files: [
+      'webpack-config.js',
+      'package.json',
+      '.eslintrc.js'
+    ],
+    isOpen: false
   }
 ];
 
 const getters = {
-  getAllProjects: projects => projects
+  getAllProjects: projects => projects.slice(0)
 
 };
 

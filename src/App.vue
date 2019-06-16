@@ -1,16 +1,16 @@
 <template lang='pug'>
-  #app
-    transition(name='fade' mode='out-in')
-      router-view
+  div
+    Wizard.wizard
+    #app
+      transition(name='fade' mode='out-in')
+        router-view
 </template>
 
 <script>
-
+import Wizard from './components/Wizard'
 export default {
   name: 'app',
-  data () {
-    return {}
-  }
+  components: {Wizard}
 }
 </script>
 

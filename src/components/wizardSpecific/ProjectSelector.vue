@@ -39,7 +39,7 @@ export default {
       selected: 'Wizard/getSelectedProject'
     }),
     sortedProjects(){
-      return this.getAllProjects.sort((a, b) => {
+      return this.getAllProjects.slice(0).sort((a, b) => {
         const first = this.ascending ? a : b;
         const second = this.ascending ? b : a;
         if (this.sortBy === 'name'){

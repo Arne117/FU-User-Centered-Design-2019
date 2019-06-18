@@ -33,7 +33,7 @@ const state = [
 ];
 
 const getters = {
-  getAllProjects: projects => projects.slice(0)
+  getAllProjects: projects => projects
 
 };
 

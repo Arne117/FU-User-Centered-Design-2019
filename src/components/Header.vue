@@ -1,14 +1,13 @@
 <template lang='pug'>
   header.Header
-    nav.Header-nav.site-header.sticky-top.py-1
+    nav.Header-nav.site-header.sticky-top
       .container.d-flex
         ul.Header-list.Header-nav--left
-          li.Header-item(
-            v-for='length in itemLength'
-            tooltip='Not part of the task'
-            :style='{ width: length + "px" }'
-            )
-            .Header-item--content
+          li.Header-item File
+          li.Header-item Edit
+          li.Header-item Selection
+          li.Header-item View
+          li.Header-item Go
         .Header-nav--right
           img.Saros-btn(
             src='@/assets/saros-logo.png'
@@ -58,25 +57,12 @@ export default {
     }
 
     &-item {
-      width 80px
-      height 35px
       padding 10px
+      color #fff
+      user-select none
 
       &:hover {
-        cursor not-allowed
-        filter drop-shadow(0 0 .2rem $green)
-
-        &:after {
-          // content attr(tooltip)
-          // font-size 10px
-        }
-      }
-
-      &--content {
-        width 100%
-        height 100%
-        border-radius 10px
-        background-color $lightBlue
+        background-color $darkGrey
       }
     }
   }

@@ -1,6 +1,6 @@
 <template lang='pug'>
   .SourceCode
-    .SourceCode-wrapper Sourcecode
+    .SourceCode-wrapper
       pre(v-highlightjs='sourcecode' contenteditable)
         code.javascript
 </template>

@@ -1,14 +1,12 @@
 <template lang='pug'>
   .SourceCode
     .SourceCode-wrapper Sourcecode
-      button(@click="showWizard") Show Wizard
       pre(v-highlightjs='sourcecode' contenteditable)
         code.javascript
 </template>
 
 <script>
 import Code from './code';
-import { mapMutations } from 'vuex';
 
 export default {
   name: 'SourceCode',
@@ -17,12 +15,7 @@ export default {
       sourcecode: Code
     }
   },
-  methods:{
-    ...mapMutations({setWizardView: 'Wizard/setWizardView'}),
-    showWizard(){
-      this.setWizardView('visible');
-    }
-  }
+  methods:{}
 }
 </script>
 

@@ -12,11 +12,13 @@
         .Header-nav--right
           img.Saros-btn(
             src='@/assets/saros-logo.png'
-            @click='toggleSaros()'
-          )
+            @click="showWizard"
+            )
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   name: 'Header',
   data () {
@@ -26,6 +28,10 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({setWizardView: 'Wizard/setWizardView'}),
+    showWizard(){
+      this.setWizardView('visible');
+    },
     toggleSaros: function () {
       this.displaySaros = !this.displaySaros
     }

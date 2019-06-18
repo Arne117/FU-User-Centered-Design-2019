@@ -47,6 +47,7 @@ export default {
 
       &--right {
         margin-right 40px
+        padding-top .25em
       }
     }
 

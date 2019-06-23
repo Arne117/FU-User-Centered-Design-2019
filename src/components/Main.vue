@@ -5,8 +5,6 @@
       Iconbar
       Sidebar
       SourceCode
-      //- keep-alive
-      //-   component(:is='state')
     Bottombar
 </template>
 

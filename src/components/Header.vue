@@ -20,12 +20,6 @@ import { mapMutations } from 'vuex';
 
 export default {
   name: 'Header',
-  data () {
-    return {
-      itemLength: [90, 70, 90, 100, 80],
-      displaySaros: false
-    }
-  },
   methods: {
     ...mapMutations({setWizardView: 'Wizard/setWizardView'}),
     showWizard(){
@@ -64,7 +58,7 @@ export default {
     }
 
     &-item {
-      padding 5px
+      padding 10px
       color #fff
       user-select none
       margin 0px
@@ -84,14 +78,5 @@ export default {
       filter drop-shadow(0 0 .2rem $green)
       cursor pointer
     }
-  }
-
-  .SarosView {
-    position absolute
-    right 0
-    top 43px
-    width 400px
-    height 300px
-    background-color $lightGrey
   }
 </style>

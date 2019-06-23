@@ -1,10 +1,10 @@
 <template lang='pug'>
   transition(name='fade' mode='out-in')
-    #Saros.Saros(v-show='wizardView === "hidden"')
+    #Saros.Saros(v-show='wizardView === "hidden" && isOpen')
       .SarosTopBar
         .SarosTopBar-item.SarosTopBar-item--minimize
           i.fa.fa-window-minimize
-        .SarosTopBar-item.SarosTopBar-item--close
+        .SarosTopBar-item.SarosTopBar-item--close(@click='onSessionClose')
           i.fa.fa-window-close-o
 
       .Saros-content
@@ -63,8 +63,15 @@ export default {
   methods: {
     ...mapMutations({
       setSarosOpenState: 'Saros/setOpenState',
-      setSarosView: 'Saros/setActiveView'
-    })
+      setSarosView: 'Saros/setActiveView',
+      resetWizard: 'Wizard/reset',
+    }),
+    onSessionClose () {
+      // TODO: add confirm dialog
+      this.setSarosOpenState(false)
+      this.setSarosView('SessionView')
+      this.resetWizard()
+    }
   }
 }
 </script>
@@ -76,7 +83,9 @@ export default {
     right 50px
     width 400px
     height 300px
+
     background-color $lightGrey
+    border 2px solid $uiGrey
 
     &-content {
       display flex
@@ -92,6 +101,7 @@ export default {
     right 0
     display flex
     margin .25em
+    z-index 100
 
     &-item {
       padding 0 .25em  
@@ -125,7 +135,6 @@ export default {
       background-color darken($lightGrey, 30%)
       border-top 1px solid transparent
       border-bottom 1px solid transparent
-      border-left 1px solid transparent
 
       &:hover {
         background-color darken($lightGrey, 20%)
@@ -136,7 +145,6 @@ export default {
 
         border-top 1px solid $uiGrey
         border-bottom 1px solid $uiGrey
-        border-left 1px solid $uiGrey
 
         &:after {
           content ''
@@ -169,5 +177,9 @@ export default {
         }
       }
     }
+  }
+
+  .SarosView {
+    width 100%  
   }
 </style>

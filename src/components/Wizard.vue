@@ -48,7 +48,7 @@ export default {
     ...mapMutations({
       setWizardView: 'Wizard/setWizardView',
       selectProject: 'Wizard/selectProject',
-      resetWizard: 'Wizard/reset'
+      setSarosOpenState: 'Saros/setOpenState'
     }),
     checkProjectStep(){
       this.errorMsg = '';
@@ -68,8 +68,8 @@ export default {
     },
     onComplete() {
       //TODO: implement the actual handling of session start
-      this.resetWizard();
       this.cancel();
+      this.setSarosOpenState(true)
     },
     cancel(){
       this.setWizardView('hidden')

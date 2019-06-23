@@ -1,6 +1,6 @@
 const state = {
   isOpen: true,
-  activeView: 'ChatView'
+  activeView: 'SessionView'
 }
 
 const getters = {
@@ -9,7 +9,7 @@ const getters = {
 }
 
 const mutations = {
-  setOpenState: (state, value) => value ? state.isOpen = value : state.isOpen = !state.isOpen,
+  setOpenState: (state, value) => state.isOpen = value,
   setActiveView: (state, value) => state.activeView = value
 }
 

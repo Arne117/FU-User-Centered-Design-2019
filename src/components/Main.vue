@@ -37,10 +37,11 @@ export default {
 <style lang="stylus" scoped>
   #IDE {
     background-color #c2c2c2
+    height 100vh
   }
 
   .PageContent {
-    min-height 90vh
+    height calc(100% -  63px) // 39 px for the header and 24 px for the bottom bar
     display flex
     flex-direction row
     justify-content center

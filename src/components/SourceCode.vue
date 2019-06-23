@@ -34,7 +34,7 @@ export default {
 
 <style lang='stylus' scoped>
   .SourceCode {
-
+    height 100%
     flex 80%
     display flex
 
@@ -43,9 +43,7 @@ export default {
     text-align left
     color $grey
     &-wrapper {
-      padding 15px
       width 100%
-      max-height calc(100vh - 43px)
       overflow-y scroll
     }
 
@@ -57,14 +55,18 @@ export default {
 
   .LineNumber {
     color #FFF
-    padding-top 0px
-    padding-bottom 0px
-    padding-right 5px
+    padding 0 5px
     font-size 14px
     text-align right
+    user-select none
+    transition background-color 250ms
+    &:hover {
+      background-color #111
+    }
   }
 
   .CodeLine {
+    width 100%
     padding-top 0px
     padding-bottom 0px
 
@@ -93,7 +95,7 @@ export default {
     }
 
     .hljs {
-      background-color transparent  
+      background-color transparent
     }
   }
 

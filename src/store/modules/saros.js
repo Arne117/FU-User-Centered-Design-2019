@@ -1,17 +1,16 @@
 const state = {
   isOpen: true,
-  inState: 'Chat'
+  activeView: 'ChatView'
 }
 
 const getters = {
-  isOpen: state => state.isOpen
-
+  isOpen: state => state.isOpen,
+  getActiveView: state => state.activeView
 }
 
 const mutations = {
-  switchOpenState: (state, param) => {
-    state.isOpen = !state.isOpen
-  }
+  setOpenState: (state, value) => value ? state.isOpen = value : state.isOpen = !state.isOpen,
+  setActiveView: (state, value) => state.activeView = value
 }
 
 export default { namespaced: true, state, getters, mutations }

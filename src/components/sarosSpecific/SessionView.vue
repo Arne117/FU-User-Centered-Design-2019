@@ -5,11 +5,15 @@
       ul.User-list
         li.User-item(
           v-for='user in users'
-          :key='user.fulName'
+          :key='user.fullName'
           v-if='selectedUsers.includes(user.fullName)'
+          @click='startChat(user.fullName)'
           )
           .User-item--left
-            .User-profile(:class='user.online ? "online" : "" ')
+            .User-profile(
+              :class='user.online ? "online" : "" '
+              :style='{ backgroundColor: user.color }'
+            )
               | {{ user.fullName[0] }}.
           .User-item--right
             .User-name {{ user.fullName }}
@@ -25,7 +29,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'SessionView',
@@ -35,6 +39,18 @@ export default {
       selectedUsers: 'Wizard/getSelectedUsers',
       users: 'User/getAllUsers'
     })
+  },
+  methods: {
+    ...mapMutations({
+      setSarosView: 'Saros/setActiveView',
+      addChatTab: 'Chat/addTab',
+      setActiveTab: 'Chat/setActiveTab'
+    }),
+    startChat (user) {
+      this.addChatTab(user)
+      this.setActiveTab(user)
+      this.setSarosView("ChatView")
+    }
   }
 }
 </script>

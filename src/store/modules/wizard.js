@@ -13,7 +13,8 @@ const state = {
 const getters = {
   getWizardView: state => state.view,
   getSelectedProject: state => state.selectedProject,
-  getSelectedUsers: state => state.selectedUsers
+  getSelectedUsers: state => state.selectedUsers,
+  getSessionName: state => state.sessionName
 };
 
 const mutations = {
@@ -26,8 +27,8 @@ const mutations = {
     else
       state.selectedUsers.splice(index, 1);
   },
-  reset:(state) => Object.assign(state, {selectedProject: '', selectedUsers: []})
-
+  reset:(state) => Object.assign(state, {selectedProject: '', selectedUsers: []}),
+  setSessionName: (state, value) => state.sessionName = value
 };
 
 

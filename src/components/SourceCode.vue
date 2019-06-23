@@ -1,8 +1,14 @@
 <template lang='pug'>
   .SourceCode
-    .SourceCode-wrapper
-      pre(v-highlightjs='sourcecode' contenteditable)
-        code.javascript
+    .SourceCode-wrapper Sourcecode
+      table
+        tbody
+          tr(v-for="[index, line] in sourcecode.split('\\n').map(function(e, i) {return [i+1, e];})" :key="index")
+            td.LineNumber {{ index }}
+            td.CodeLine
+              pre(v-highlightjs='line' contenteditable)
+                code.javascript
+
 </template>
 
 <script>
@@ -75,4 +81,28 @@ export default {
       }
     }
   }
+
+  .LineNumber {
+    color: #FFF;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 5px;
+    font-size: 14px;
+    text-align: right;
+  }
+
+  .CodeLine {
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+    & > pre {
+      margin-bottom: 0px;
+
+      & > code {
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+    }
+  }
+
 </style>

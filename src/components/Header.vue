@@ -58,9 +58,11 @@ export default {
     }
 
     &-item {
-      padding 10px
+      padding 5px
       color #fff
       user-select none
+      margin 0px
+      width 85px
 
       &:hover {
         background-color $darkGrey

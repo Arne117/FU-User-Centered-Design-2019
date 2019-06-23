@@ -3,18 +3,10 @@
     .SourceCode-wrapper Sourcecode
       table.SourceCode-content
         tbody
-          tr(
-            v-for="[index, line] in sourcecode.split('\\n').map((e, i) => [i + 1, e])"
-            :key="index"
-          )
+          tr(v-for="[index, line] in sourcecode.split('\\n').map((e, i) => [i + 1, e])" :key="index")
             td.LineNumber {{ index }}
-            td.CodeLine(
-              :class=`[
-                index === 19 ? 'CodeLine-comment' : '',
-                index === 27 ? 'CodeLine-highlight' : '',
-              ]`
-            )
-              pre(v-highlightjs='line' contenteditable)
+            td.CodeLine(:class="{'CodeLine-comment': index === 19, 'CodeLine-highlight': index === 27}")
+              pre(v-highlightjs='line' contenteditable autocorrect="off" autocapitalize="off" spellcheck="false")
                 code.javascript
 
 </template>

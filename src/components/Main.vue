@@ -16,7 +16,6 @@ import Sidebar from './Sidebar'
 import SourceCode from './SourceCode'
 import Bottombar from './Bottombar'
 import Saros from './Saros'
-import Wizard from './Wizard'
 import Iconbar from './Iconbar'
 
 export default {
@@ -27,7 +26,6 @@ export default {
     SourceCode,
     Bottombar,
     Saros,
-    Wizard,
     Iconbar
   },
   data () {

@@ -43,16 +43,16 @@ export default {
   .Tab {
     &-list {
       display flex
-      flex-direction row  
+      flex-direction row
       height 38px
       max-width 75%
-      overflow-x scroll
+      overflow-x auto
 
-      &::-webkit-scrollbar { 
+      &::-webkit-scrollbar {
         display none
       }
     }
-    
+
     &-item {
       display flex
       justify-content center
@@ -77,7 +77,7 @@ export default {
         border-right 1px solid $uiGrey
 
         &:first-child {
-          border-left 1px solid transparent  
+          border-left 1px solid transparent
         }
 
         &:after {

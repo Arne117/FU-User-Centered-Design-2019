@@ -58,7 +58,8 @@ export default {
     }
 
     &-item {
-      padding 10px
+      // padding top+bottom max. 15px damit Headline max 39px (inkl. 24px fontsize)
+      padding 7.5px 10px 7.5px 10px
       color #fff
       user-select none
       margin 0px

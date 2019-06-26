@@ -8,7 +8,6 @@
             td.CodeLine(:class="{'CodeLine-comment': index === 19, 'CodeLine-highlight': index === 27}")
               pre(v-highlightjs='line' contenteditable autocorrect="off" autocapitalize="off" spellcheck="false")
                 code.javascript
-
 </template>
 
 <script>

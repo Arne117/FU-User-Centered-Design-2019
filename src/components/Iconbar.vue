@@ -5,13 +5,28 @@
       i.fa.fa-2x.fa-search
       i.fa.fa-2x.fa-code-fork
       i.fa.fa-2x.fa-github
+      img.Saros-btn(
+        src='@/assets/saros-logo.png'
+        @click="showWizard"
+        )
     .Iconbar-bottom
       i.fa.fa-2x.fa-cog
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
-  name: 'Iconbar'
+  name: 'Iconbar',
+  methods: {
+    ...mapMutations({setWizardView: 'Wizard/setWizardView'}),
+    showWizard(){
+      this.setWizardView('visible');
+    },
+    toggleSaros: function () {
+      this.displaySaros = !this.displaySaros
+    }
+  }
 }
 </script>
 
@@ -46,5 +61,15 @@ export default {
     .fa {
       margin .5em 0
     }
-  }
+    .Saros-btn {
+      max-width 55px
+      padding 0 10px
+      margin 1em 0
+
+      &:hover {
+        filter drop-shadow(0 0 .2rem $green)
+        cursor pointer
+      }
+    }
+}
 </style>

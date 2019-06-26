@@ -8,11 +8,6 @@
           li.Header-item Selection
           li.Header-item View
           li.Header-item Go
-        .Header-nav--right
-          img.Saros-btn(
-            src='@/assets/saros-logo.png'
-            @click="showWizard"
-            )
 </template>
 
 <script>

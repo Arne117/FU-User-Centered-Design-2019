@@ -60,6 +60,11 @@ export default {
 
     .fa {
       margin .5em 0
+
+      &:hover {
+        filter drop-shadow(0 0 .2rem $green)
+        cursor pointer
+      }
     }
     .Saros-btn {
       max-width 55px

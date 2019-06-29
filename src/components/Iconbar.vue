@@ -6,12 +6,14 @@
       i.fa.fa-2x.fa-code-fork(title="Source Control")
       i.fa.fa-2x.fa-github(title="Github")
       i(@click="openSaros" :title="title")
-        img.Saros-btn(src='@/assets/saros-logo.png' :class="{SarosOnline: isInSession}")
+        img.Saros-btn(:src="logo")
     .Iconbar-bottom
       i.fa.fa-2x.fa-cog
 </template>
 
 <script>
+import SarosColor from '@/assets/saros-logo.png'
+import SarosBW from '@/assets/saros-logo-white.png'
 import { mapMutations, mapGetters } from 'vuex';
 
 export default {
@@ -24,6 +26,9 @@ export default {
     }),
     title(){
       return `Saros${this.isInSession ? '\nIn Session: ' + this.sessionName : ''}`
+    },
+    logo(){
+      return this.isInSession ? SarosColor : SarosBW;
     }
   },
   methods: {
@@ -43,47 +48,45 @@ export default {
 </script>
 
 <style lang='stylus' scoped>
-  .Iconbar {
+.Iconbar {
+  display flex
+  width 60px
+  flex-direction column
+
+  color white
+  user-select none
+
+  background-color $uiGrey
+  border-top 1px solid #444
+
+  &-top {
     display flex
-    width 60px
+    flex-direction column
+    margin-bottom auto
+  }
+
+  &-bottom {
+    display flex
     flex-direction column
 
-    color white
-    user-select none
-
-    background-color $uiGrey
-    border-top 1px solid #444
-
-    &-top {
-      display flex
-      flex-direction column
-      margin-bottom auto
+    span {
+      margin .5em 0
     }
+  }
 
-    &-bottom {
-      display flex
-      flex-direction column
+  & > * > * {
+    padding .5em 0
+    transition background-color 150ms
+    cursor pointer
 
-      span {
-        margin .5em 0
-      }
+    &:hover {
+      background-color #555
     }
-
-    & > * > * {
-      padding .5em 0
-      transition background-color 150ms
-      cursor pointer
-
-      &:hover {
-        background-color #555
-      }
-    }
-    .Saros-btn {
-      max-width 38px
-      margin auto
-    }
-    .SarosOnline {
-      filter: drop-shadow(2px 2px 3px $green);
-    }
+  }
+  
+  .Saros-btn {
+    max-width 38px
+    margin auto
+  }
 }
 </style>

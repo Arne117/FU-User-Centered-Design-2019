@@ -9,7 +9,7 @@
           li.Header-item View
           li.Header-item Go
           li.flexx
-            Dropdown
+            Dropdown(style="position: absolute")
 </template>
 
 <script>
@@ -44,7 +44,9 @@ export default {
     flex-direction: column
   }
   .Header {
+    user-select none
     position relative
+    z-index 0
     background-color $uiGrey
 
     &-nav {

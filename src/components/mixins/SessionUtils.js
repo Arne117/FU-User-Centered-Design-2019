@@ -18,6 +18,12 @@ export default {
       this.__setSarosView('SessionView')
       this.__resetWizard()
 
+    },
+    showSaros() {
+      this.__setSarosOpenState(true)
+    },
+    hideSaros() {
+      this.__setSarosOpenState(false)
     }
   }
 }

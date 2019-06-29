@@ -3,8 +3,9 @@
     .dropbtn(@click="switchMenuDisplay") Saros
     .dropdown-content(v-show="showMenu" @click="showMenu = false")
       template(v-if="isInSession" )
-        div(@click="showSaros") {{ SarosIsOpen ? 'Hide' : 'Show' }} Saros
-        div(@click="leaveSession") Leave Session
+        div(v-if="SarosIsOpen" @click="hideSaros") Hide Saros
+        div(v-else @click="showSaros") Show Saros
+        div(@click="onSessionClose") Leave Session
       template(v-else)
         div(@click='showWizard') Create Session
         div Join Session
@@ -12,10 +13,12 @@
 
 
 <script>
+import SessionUtils from './mixins/SessionUtils'
 import { mapMutations, mapGetters } from 'vuex';
 
 export default {
   name: 'Dropdown',
+  mixins: [SessionUtils],
   data(){
     return {
       showMenu: false
@@ -36,12 +39,6 @@ export default {
     showWizard(){
       this.setWizardView('visible');
     },
-    showSaros(){
-
-    },
-    leaveSession(){
-
-    }
   }
 }
 

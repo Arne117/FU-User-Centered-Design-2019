@@ -20,12 +20,12 @@
             .User-status(v-if='user.currentFile') In file:
               a.File-link {{ user.currentFile }}
             .User-status(v-else) Last seen: {{ user.lastSeen }}
-        li.User-item
+        li.User-item(@click="changeUsers")
           .User-item--left
             .User-profile.light
-              i.fa.fa-plus
+              i.fa.fa-user
           .User-item--right
-            .User-name Add user
+            .User-name Manage users
 </template>
 
 <script>
@@ -45,12 +45,16 @@ export default {
     ...mapMutations({
       setSarosView: 'Saros/setActiveView',
       addChatTab: 'Chat/addTab',
-      setActiveTab: 'Chat/setActiveTab'
+      setActiveTab: 'Chat/setActiveTab',
+      setWizardView: 'Wizard/setWizardView'
     }),
     startChat (user) {
       this.addChatTab(user)
       this.setActiveTab(user)
       this.setSarosView("ChatView")
+    },
+    changeUsers(){
+      this.setWizardView('changeUsers')
     }
   }
 }

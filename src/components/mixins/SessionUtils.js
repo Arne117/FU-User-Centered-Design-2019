@@ -8,6 +8,7 @@ export default {
       __setInSessionState: 'Saros/setInSessionState',
       __setSarosView: 'Saros/setActiveView',
       __resetWizard: 'Wizard/reset',
+      __setWizardView: 'Wizard/setWizardView'
     }),
     onSessionClose() {
       const confirmation = confirm('Are you sure you want to end the session?')
@@ -24,6 +25,9 @@ export default {
     },
     hideSaros() {
       this.__setSarosOpenState(false)
+    },
+    createSession() {
+      this.__setWizardView('createSession')
     }
   }
 }

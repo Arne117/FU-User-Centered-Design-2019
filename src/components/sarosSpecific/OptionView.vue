@@ -3,7 +3,7 @@
     ul.Option-list
       li.Option-item Session name:
         input(type='text' v-model='_sessionName')
-      li.Option-item.Button Add / Remove User
+      li.Option-item.Button(@click="setWizardView('changeUsers')") Add / Remove User
       li.Option-item.Button(@click="onSessionClose") Leave session
 </template>
 
@@ -29,7 +29,8 @@ export default {
     ...mapMutations({
       setSarosOpenState: 'Saros/setOpenState',
       setSarosView: 'Saros/setActiveView',
-      resetWizard: 'Wizard/reset'
+      resetWizard: 'Wizard/reset',
+      setWizardView: 'Wizard/setWizardView'
     }),
     endSession(){
       const confirmation = confirm('Are you sure you want to end the session?')

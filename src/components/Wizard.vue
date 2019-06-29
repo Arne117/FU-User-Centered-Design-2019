@@ -3,18 +3,32 @@
     #wizardOverlay(v-show="wizardView !== 'hidden'" @click.self="hide")
       #wizardWrapper
         i#closeButton.fa.fa-times(@click.self="hide")
+        //- create session wizard
         form-wizard#wizard(
+          v-show="wizardView === 'createSession'"
           title="Create Session" subtitle="" color="#2377ff" stepSize="xs" shape="circle"
-          ref="wizard" @on-complete="onComplete" @on-change="errorMsg = ''"
+          ref="sessionWizard" @on-complete="onComplete" @on-change="errorMsg = ''"
         )
           tab-content(title="Choose Project" icon="fa fa-folder" :before-change="checkProjectStep")
             | Choose project to share:
-            ProjectSelector(@next="$refs.wizard.nextTab();")
+            ProjectSelector(@next="$refs.sessionWizard.nextTab();")
 
           tab-content(title="Invite Users" icon="fa fa-users" :before-change="checkUserStep")
             | Choose users to add to this session
             UserSelector
           .errorMessage(v-if="errorMsg") {{ errorMsg }}
+
+        //- choose users wizard
+        form-wizard#wizard(
+          v-show="wizardView === 'changeUsers'"
+          title="Add/remove Users" subtitle="" color="#2377ff" stepSize="xs" shape="circle"
+          ref="userWizard" @on-complete="onComplete" @on-change="errorMsg = ''"
+        )
+          tab-content(title="" icon="fa fa-users" :before-change="checkUserStep")
+            | Click to add / remove users from this session
+            UserSelector
+          .errorMessage(v-if="errorMsg") {{ errorMsg }}
+
 
 </template>
 
@@ -27,10 +41,13 @@ export default {
   name: 'Wizard',
   mounted(){
     // hack to fix the line on the left side of the wizard
-    const bar = this.$el.querySelector('div.wizard-progress-bar');
-    const clone = bar.cloneNode();
+    const bars = this.$el.querySelectorAll('div.wizard-progress-bar');
+    const clone = bars[0].cloneNode();
     clone.style = `position: absolute; left: 0px; background-color: white; width: 25%; outline: 2px solid white; height: 6px; top: -1px`;
-    bar.parentElement.appendChild(clone)
+    bars[0].parentElement.appendChild(clone)
+    const clone2 = clone.cloneNode()
+    clone2.style.width="50%";
+    bars[1].appendChild(clone2);
   },
   data(){
     return {
@@ -76,7 +93,10 @@ export default {
     hide(){
       this.setWizardView('hidden')
       //wait for the animation
-      setTimeout(()=>this.$refs.wizard.reset(), 500);
+      setTimeout(()=>{
+        this.$refs.sessionWizard.reset();
+        this.$refs.userWizard.reset();
+      }, 500);
     }
   },
   components: {ProjectSelector, UserSelector},

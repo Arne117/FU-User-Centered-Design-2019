@@ -33,10 +33,9 @@ export default {
     }),
     openSaros(){
       if (this.isInSession) {
-        const isOpen = this.SarosIsOpen;
-        this.setSarosOpenState(!isOpen)
+        this.setSarosOpenState(!this.SarosIsOpen)
       } else {
-        this.setWizardView('visible');
+        this.setWizardView('createSession');
       }
     }
   }

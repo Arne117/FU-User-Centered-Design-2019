@@ -65,7 +65,7 @@ export default {
   &-active {
     background-color rgba(35, 119, 255, 0.25)
     &:hover {
-    background-color rgba(35, 119, 255, 0.25)
+    background-color rgba(35, 119, 255, 0.4)
     }
   }
 }

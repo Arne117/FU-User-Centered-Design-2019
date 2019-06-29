@@ -14,7 +14,7 @@ export default {
   name: 'OptionView',
   mixins: [SessionUtils],
   computed: {
-    ...mapState(['sessionName']),
+    ...mapState('Wizard', ['sessionName']),
     ...mapGetters({
       selectedProject: 'Wizard/getSelectedProject',
       selectedUsers: 'Wizard/getSelectedUsers',

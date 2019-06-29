@@ -2,10 +2,11 @@ const state = {
   view: 'hidden',
   // selectedProject: '',
   // selectedUsers: [],
-  sessionName: '',
+  // sessionName: '',
 
   // For Saros view development
   selectedProject: 'Vue',
+  sessionName: 'Vue',
   selectedUsers: ["Linus Helfmann", "Arne Rolf", "Abdullah Barhoum", "Lukas Keul"],
 
 };

@@ -1,12 +1,12 @@
 <template lang='pug'>
   .Iconbar
     .Iconbar-top
-      i.fa.fa-2x.fa-files-o
-      i.fa.fa-2x.fa-search
-      i.fa.fa-2x.fa-code-fork
-      i.fa.fa-2x.fa-github
-      i(@click="openSaros")
-        img.Saros-btn(src='@/assets/saros-logo.png')
+      i.fa.fa-2x.fa-files-o(title="File Explorer")
+      i.fa.fa-2x.fa-search(title="Search")
+      i.fa.fa-2x.fa-code-fork(title="Source Control")
+      i.fa.fa-2x.fa-github(title="Github")
+      i(@click="openSaros")(:title="title")
+        img.Saros-btn(src='@/assets/saros-logo.png' :class="{SarosOnline: isInSession}")
     .Iconbar-bottom
       i.fa.fa-2x.fa-cog
 </template>
@@ -19,8 +19,12 @@ export default {
   computed: {
     ...mapGetters({
       isInSession: 'Saros/isInSession',
-      SarosIsOpen: 'Saros/isOpen'
-    })
+      SarosIsOpen: 'Saros/isOpen',
+      sessionName: 'Wizard/getSessionName'
+    }),
+    title(){
+      return `Saros${this.isInSession ? '\nIn Session: ' + this.sessionName : ''}`
+    }
   },
   methods: {
     ...mapMutations({
@@ -66,21 +70,21 @@ export default {
       }
     }
 
-    * > * {
+    & > * > * {
       padding .5em 0
       transition background-color 150ms
+      cursor pointer
 
       &:hover {
         background-color #555
-        cursor pointer
       }
     }
     .Saros-btn {
-      display: block;
-      width: auto
-      height: auto
       max-width 38px
       margin auto
+    }
+    .SarosOnline {
+      filter: drop-shadow(2px 2px 3px $green);
     }
 }
 </style>

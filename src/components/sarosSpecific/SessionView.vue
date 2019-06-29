@@ -1,6 +1,6 @@
 <template lang='pug'>
   .Session
-    .Session-name Session: {{ selectedProject }}
+    .Session-name Session: {{ sessionName }}
     .Session-content
       ul.User-list
         li.User-item(
@@ -17,7 +17,7 @@
               | {{ user.fullName[0] }}.
           .User-item--right
             .User-name {{ user.fullName }}
-            .User-status(v-if='user.currentFile') In file: 
+            .User-status(v-if='user.currentFile') In file:
               a.File-link {{ user.currentFile }}
             .User-status(v-else) Last seen: {{ user.lastSeen }}
         li.User-item
@@ -36,6 +36,7 @@ export default {
   computed: {
     ...mapGetters({
       selectedProject: 'Wizard/getSelectedProject',
+      sessionName: 'Wizard/getSessionName',
       selectedUsers: 'Wizard/getSelectedUsers',
       users: 'User/getAllUsers'
     })
@@ -112,7 +113,7 @@ export default {
       font-size 10px
 
       .File-link {
-        text-decoration underline  
+        text-decoration underline
       }
     }
   }

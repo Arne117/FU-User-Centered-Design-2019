@@ -5,10 +5,8 @@
       i.fa.fa-2x.fa-search
       i.fa.fa-2x.fa-code-fork
       i.fa.fa-2x.fa-github
-      img.Saros-btn(
-        src='@/assets/saros-logo.png'
-        @click="showWizard"
-        )
+      i(@click="showWizard")
+        img.Saros-btn(src='@/assets/saros-logo.png')
     .Iconbar-bottom
       i.fa.fa-2x.fa-cog
 </template>
@@ -22,9 +20,6 @@ export default {
     ...mapMutations({setWizardView: 'Wizard/setWizardView'}),
     showWizard(){
       this.setWizardView('visible');
-    },
-    toggleSaros: function () {
-      this.displaySaros = !this.displaySaros
     }
   }
 }
@@ -33,9 +28,8 @@ export default {
 <style lang='stylus' scoped>
   .Iconbar {
     display flex
-    width 50px
+    width 60px
     flex-direction column
-    padding 0 0 1em
 
     color white
     user-select none
@@ -58,23 +52,21 @@ export default {
       }
     }
 
-    .fa {
-      margin .5em 0
+    * > * {
+      padding .5em 0
+      transition background-color 150ms
 
       &:hover {
-        filter drop-shadow(0 0 .2rem $green)
+        background-color #555
         cursor pointer
       }
     }
     .Saros-btn {
-      max-width 55px
-      padding 0 10px
-      margin 1em 0
-
-      &:hover {
-        filter drop-shadow(0 0 .2rem $green)
-        cursor pointer
-      }
+       display: block;
+       width: auto
+       height: auto
+       max-width 38px
+       margin auto
     }
 }
 </style>

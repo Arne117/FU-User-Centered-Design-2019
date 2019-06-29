@@ -17,9 +17,6 @@ export default {
     ...mapMutations({setWizardView: 'Wizard/setWizardView'}),
     showWizard(){
       this.setWizardView('visible');
-    },
-    toggleSaros: function () {
-      this.displaySaros = !this.displaySaros
     }
   }
 }

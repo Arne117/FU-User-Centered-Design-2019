@@ -5,7 +5,7 @@
       i.fa.fa-2x.fa-search(title="Search")
       i.fa.fa-2x.fa-code-fork(title="Source Control")
       i.fa.fa-2x.fa-github(title="Github")
-      i(@click="openSaros")(:title="title")
+      i(@click="openSaros" :title="title")
         img.Saros-btn(src='@/assets/saros-logo.png' :class="{SarosOnline: isInSession}")
     .Iconbar-bottom
       i.fa.fa-2x.fa-cog

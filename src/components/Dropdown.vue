@@ -1,21 +1,46 @@
 <template lang="pug">
-  .dropdown
-    .dropbtn Saros
-    .dropdown-content
-      div(@click='showWizard') Create Session
-      div Join Session
+  .dropdown(@mouseleave="showMenu = false" )
+    .dropbtn(@click="switchMenuDisplay") Saros
+    .dropdown-content(v-show="showMenu" @click="showMenu = false")
+      template(v-if="isInSession" )
+        div(@click="showSaros") {{ SarosIsOpen ? 'Hide' : 'Show' }} Saros
+        div(@click="leaveSession") Leave Session
+      template(v-else)
+        div(@click='showWizard') Create Session
+        div Join Session
 </template>
 
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapGetters } from 'vuex';
 
 export default {
   name: 'Dropdown',
+  data(){
+    return {
+      showMenu: false
+    }
+  },
+  computed:{
+    ...mapGetters({
+      isInSession: 'Saros/isInSession',
+      SarosIsOpen: 'Saros/isOpen',
+      sessionName: 'Wizard/getSessionName'
+    }),
+  },
   methods: {
+    switchMenuDisplay(){
+      this.showMenu = !this.showMenu
+    },
     ...mapMutations({setWizardView: 'Wizard/setWizardView'}),
     showWizard(){
       this.setWizardView('visible');
+    },
+    showSaros(){
+
+    },
+    leaveSession(){
+
     }
   }
 }
@@ -37,12 +62,9 @@ export default {
   color $white
   margin 0px
   width 85px
+  cursor pointer
 }
 
-/* Dropdown content (hidden by default) */
-.dropdown-content {
-  display: none;
-}
 
 /* Links inside the dropdown */
 .dropdown-content div {
@@ -57,8 +79,4 @@ export default {
   background-color: $darkGrey;
 }
 
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
 </style>

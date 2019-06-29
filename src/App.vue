@@ -1,6 +1,7 @@
 <template lang='pug'>
   div
     Wizard.wizard
+    Saros
     #app
       transition(name='fade' mode='out-in')
         router-view
@@ -8,9 +9,14 @@
 
 <script>
 import Wizard from './components/Wizard'
+import Saros from './components/Saros'
+
 export default {
   name: 'app',
-  components: {Wizard}
+  components: {
+    Wizard,
+    Saros
+  }
 }
 </script>
 

@@ -3,24 +3,28 @@ import Moment from 'moment';
 const state = [
   {
     fullName: 'Abdullah Barhoum',
-    lastSeen: Moment().subtract(2, 'hour'),
+    lastSeen: Moment().subtract(2, 'hour').startOf('hour').fromNow(),
     currentFile: 'test.txt',
-    online: false
+    online: true,
+    color: 'orange'
   }, {
     fullName: 'Lukas Keul',
-    lastSeen: Moment().subtract(10, 'minute'),
+    lastSeen: Moment().subtract(10, 'minute').startOf('hour').fromNow(),
     currentFile: 'Reader.js',
-    online: true
+    online: true,
+    color: 'pink'
   }, {
     fullName: 'Arne Rolf',
-    lastSeen: Moment().subtract(1, 'hour'),
+    lastSeen: Moment().subtract(1, 'hour').startOf('hour').fromNow(),
     currentFile: '',
-    online: false
+    online: false,
+    color: 'red'
   }, {
     fullName: 'Linus Helfmann',
-    lastSeen: Moment().subtract(2, 'day'),
+    lastSeen: Moment().subtract(2, 'day').startOf('day').fromNow(),
     currentFile: '',
-    online: false
+    online: false,
+    color: 'brown'
   }
 ];
 

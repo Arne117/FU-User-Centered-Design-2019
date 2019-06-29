@@ -26,7 +26,7 @@ export default {
 <style lang='stylus' scoped>
   .SourceCode {
     height 100%
-    flex 80%
+    flex 1
     display flex
 
     background-color $grey

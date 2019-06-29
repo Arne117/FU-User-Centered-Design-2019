@@ -5,21 +5,35 @@
       i.fa.fa-2x.fa-search
       i.fa.fa-2x.fa-code-fork
       i.fa.fa-2x.fa-github
-      i(@click="showWizard")
+      i(@click="openSaros")
         img.Saros-btn(src='@/assets/saros-logo.png')
     .Iconbar-bottom
       i.fa.fa-2x.fa-cog
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapGetters } from 'vuex';
 
 export default {
   name: 'Iconbar',
+  computed: {
+    ...mapGetters({
+      isInSession: 'Saros/isInSession',
+      SarosIsOpen: 'Saros/isOpen'
+    })
+  },
   methods: {
-    ...mapMutations({setWizardView: 'Wizard/setWizardView'}),
-    showWizard(){
-      this.setWizardView('visible');
+    ...mapMutations({
+      setWizardView: 'Wizard/setWizardView',
+      setSarosOpenState: 'Saros/setOpenState'
+    }),
+    openSaros(){
+      if (this.isInSession) {
+        const isOpen = this.SarosIsOpen;
+        this.setSarosOpenState(!isOpen)
+      } else {
+        this.setWizardView('visible');
+      }
     }
   }
 }
@@ -62,11 +76,11 @@ export default {
       }
     }
     .Saros-btn {
-       display: block;
-       width: auto
-       height: auto
-       max-width 38px
-       margin auto
+      display: block;
+      width: auto
+      height: auto
+      max-width 38px
+      margin auto
     }
 }
 </style>

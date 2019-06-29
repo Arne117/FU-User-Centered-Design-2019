@@ -4,13 +4,15 @@
       li.Option-item Session name:
         input(type='text' v-model='_sessionName')
       li.Option-item.Button Add / Remove User
-      li.Option-item.Button(@click="endSession") Leave session
+      li.Option-item.Button(@click="onSessionClose") Leave session
 </template>
 
 <script>
+import SessionUtils from '../mixins/SessionUtils';
 import { mapState, mapGetters, mapMutations } from 'vuex';
 export default {
   name: 'OptionView',
+  mixins: [SessionUtils],
   computed: {
     ...mapState(['sessionName']),
     ...mapGetters({

@@ -1,8 +1,8 @@
 <template lang='pug'>
   transition(name="appear")
-    #wizardOverlay(v-show="wizardView !== 'hidden'" @click.self="cancel")
+    #wizardOverlay(v-show="wizardView !== 'hidden'" @click.self="hide")
       #wizardWrapper
-        i#closeButton.fa.fa-times(@click.self="cancel")
+        i#closeButton.fa.fa-times(@click.self="hide")
         form-wizard#wizard(
           title="Create Session" subtitle="" color="#2377ff" stepSize="xs" shape="circle"
           ref="wizard" @on-complete="onComplete" @on-change="errorMsg = ''"
@@ -48,7 +48,8 @@ export default {
     ...mapMutations({
       setWizardView: 'Wizard/setWizardView',
       selectProject: 'Wizard/selectProject',
-      setSarosOpenState: 'Saros/setOpenState'
+      setSarosOpenState: 'Saros/setOpenState',
+      setInSessionState: 'Saros/setInSessionState'
     }),
     checkProjectStep(){
       this.errorMsg = '';
@@ -68,10 +69,11 @@ export default {
     },
     onComplete() {
       //TODO: implement the actual handling of session start
-      this.cancel();
+      this.hide();
       this.setSarosOpenState(true)
+      this.setInSessionState(true)
     },
-    cancel(){
+    hide(){
       this.setWizardView('hidden')
       //wait for the animation
       setTimeout(()=>this.$refs.wizard.reset(), 500);

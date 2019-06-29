@@ -1,8 +1,8 @@
 <template lang='pug'>
   transition(name='fade' mode='out-in')
-    #Saros.Saros(v-show='wizardView === "hidden" && isOpen')
+    #Saros.Saros(v-show='isInSession && isOpen')
       .SarosTopBar
-        .SarosTopBar-item.SarosTopBar-item--minimize
+        .SarosTopBar-item.SarosTopBar-item--minimize(@click="setSarosOpenState(false)")
           i.fa.fa-window-minimize
         .SarosTopBar-item.SarosTopBar-item--close(@click='onSessionClose')
           i.fa.fa-window-close-o
@@ -39,41 +39,31 @@
 import ChatView from './sarosSpecific/ChatView'
 import OptionView from './sarosSpecific/OptionView'
 import SessionView from './sarosSpecific/SessionView'
+import SessionUtils from './mixins/SessionUtils';
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
+  mixins: [SessionUtils],
   name: 'Saros',
   data () {
     return {
       errorMsg: ''
     }
   },
-  components: {
-    ChatView,
-    OptionView,
-    SessionView
-  },
+  components: { ChatView, OptionView, SessionView },
   computed:{
     ...mapGetters({
       wizardView: 'Wizard/getWizardView',
       isOpen: 'Saros/isOpen',
+      isInSession: 'Saros/isInSession',
       sarosView: 'Saros/getActiveView'
     })
   },
   methods: {
     ...mapMutations({
       setSarosOpenState: 'Saros/setOpenState',
-      setSarosView: 'Saros/setActiveView',
-      resetWizard: 'Wizard/reset',
+      setSarosView: 'Saros/setActiveView'
     }),
-    onSessionClose () {
-      const confirmation = confirm('Are you sure you want to end the session?')
-      if(!confirmation) return;
-
-      this.setSarosOpenState(false)
-      this.setSarosView('SessionView')
-      this.resetWizard()
-    }
   }
 }
 </script>

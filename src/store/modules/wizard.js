@@ -27,7 +27,7 @@ const mutations = {
     else
       state.selectedUsers.splice(index, 1);
   },
-  reset:(state) => Object.assign(state, {selectedProject: '', selectedUsers: []}),
+  reset:(state) => Object.assign(state, {selectedProject: '', selectedUsers: [], view: 'hidden'}),
   setSessionName: (state, value) => state.sessionName = value
 };
 

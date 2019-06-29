@@ -8,18 +8,25 @@
           li.Header-item Selection
           li.Header-item View
           li.Header-item Go
-        .Header-nav--right
-          img.Saros-btn(
-            src='@/assets/saros-logo.png'
-            @click="showWizard"
-            )
+          li.flexx
+            Dropdown(style="position: absolute")
 </template>
 
 <script>
 import { mapMutations } from 'vuex';
+import Dropdown from './Dropdown';
 
 export default {
   name: 'Header',
+  components: {
+    Dropdown
+  },
+  data: () => ({
+    items: [
+      { title: 'Create Session' },
+      { title: 'Join Session' }
+    ]
+  }),
   methods: {
     ...mapMutations({setWizardView: 'Wizard/setWizardView'}),
     showWizard(){
@@ -33,8 +40,13 @@ export default {
 </script>
 
 <style lang='stylus' scoped>
+  .flexx {
+    flex-direction: column
+  }
   .Header {
+    user-select none
     position relative
+    z-index 0
     background-color $uiGrey
 
     &-nav {
@@ -44,39 +56,25 @@ export default {
       &--left {
         margin-right auto
       }
-
-      &--right {
-        margin-right 40px
-        padding-top .25em
-      }
     }
 
     &-list {
       display flex
       list-style none
       margin-bottom 0
+      align-self: start
     }
 
     &-item {
-      padding 10px
+      // padding top+bottom max. 15px damit Headline max 39px (inkl. 24px fontsize)
+      padding 7.5px 10px 7.5px 10px
       color #fff
-      user-select none
       margin 0px
       width 85px
 
       &:hover {
         background-color $darkGrey
       }
-    }
-  }
-
-  .Saros-btn {
-    max-width 55px
-    padding 0 10px
-
-    &:hover {
-      filter drop-shadow(0 0 .2rem $green)
-      cursor pointer
     }
   }
 </style>

@@ -37,7 +37,6 @@ export default {
 
 .Sidebar {
   display flex
-  flex 15%
   max-height 100%
 
   text-align left

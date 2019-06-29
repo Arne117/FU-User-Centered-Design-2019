@@ -1,15 +1,21 @@
 const state = {
   view: 'hidden',
-  selectedProject: '',
-  selectedUsers: [],
-  sessionName: ''
+  // selectedProject: '',
+  // selectedUsers: [],
+  // sessionName: '',
+
+  // For Saros view development
+  selectedProject: 'Vue',
+  sessionName: 'Vue',
+  selectedUsers: ["Linus Helfmann", "Arne Rolf", "Abdullah Barhoum", "Lukas Keul"],
 
 };
 
 const getters = {
   getWizardView: state => state.view,
   getSelectedProject: state => state.selectedProject,
-  getSelectedUsers: state => state.selectedUsers
+  getSelectedUsers: state => state.selectedUsers,
+  getSessionName: state => state.sessionName
 };
 
 const mutations = {
@@ -22,8 +28,8 @@ const mutations = {
     else
       state.selectedUsers.splice(index, 1);
   },
-  reset:(state) => Object.assign(state, {selectedProject: '', selectedUsers: []})
-
+  reset:(state) => Object.assign(state, {selectedProject: '', selectedUsers: [], view: 'hidden'}),
+  setSessionName: (state, value) => state.sessionName = value
 };
 
 

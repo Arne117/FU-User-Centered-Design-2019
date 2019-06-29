@@ -8,7 +8,6 @@
             td.CodeLine(:class="{'CodeLine-comment': index === 19, 'CodeLine-highlight': index === 27}")
               pre(v-highlightjs='line' contenteditable autocorrect="off" autocapitalize="off" spellcheck="false")
                 code.javascript
-
 </template>
 
 <script>
@@ -27,7 +26,7 @@ export default {
 <style lang='stylus' scoped>
   .SourceCode {
     height 100%
-    flex 80%
+    flex 1
     display flex
 
     background-color $grey

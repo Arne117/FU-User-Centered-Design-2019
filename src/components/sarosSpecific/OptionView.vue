@@ -1,15 +1,14 @@
 <template lang='pug'>
   .Option Options
     ul.Option-list
-      li.Option-item Session name: 
+      li.Option-item Session name:
         input(type='text' v-model='_sessionName')
-      li.Option-item.Button Add user
-      li.Option-item.Button Remove User
-      li.Option-item.Button Leave session
+      li.Option-item.Button Add / Remove User
+      li.Option-item.Button(@click="endSession") Leave session
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapState, mapGetters, mapMutations } from 'vuex';
 export default {
   name: 'OptionView',
   computed: {
@@ -22,6 +21,22 @@ export default {
     _sessionName: {
       get () { return this.sessionName},
       set (value) { this.$store.commit('Wizard/setSessionName', value) }
+    }
+  },
+  methods: {
+    ...mapMutations({
+      setSarosOpenState: 'Saros/setOpenState',
+      setSarosView: 'Saros/setActiveView',
+      resetWizard: 'Wizard/reset'
+    }),
+    endSession(){
+      const confirmation = confirm('Are you sure you want to end the session?')
+      if(!confirmation) return;
+
+      this.setSarosOpenState(false)
+      this.setSarosView('SessionView')
+      this.resetWizard()
+
     }
   }
 }

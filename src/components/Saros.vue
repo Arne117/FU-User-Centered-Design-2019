@@ -67,7 +67,9 @@ export default {
       resetWizard: 'Wizard/reset',
     }),
     onSessionClose () {
-      // TODO: add confirm dialog
+      const confirmation = confirm('Are you sure you want to end the session?')
+      if(!confirmation) return;
+
       this.setSarosOpenState(false)
       this.setSarosView('SessionView')
       this.resetWizard()
@@ -104,7 +106,7 @@ export default {
     z-index 100
 
     &-item {
-      padding 0 .25em  
+      padding 0 .25em
     }
   }
 
@@ -167,19 +169,19 @@ export default {
 
         .SarosIcon {
           width 20px
-          height 20px  
+          height 20px
         }
       }
 
       &--session {
         &.active {
-          border-top 1px solid transparent  
+          border-top 1px solid transparent
         }
       }
     }
   }
 
   .SarosView {
-    width 100%  
+    width 100%
   }
 </style>

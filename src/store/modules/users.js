@@ -6,25 +6,25 @@ const state = [
     lastSeen: Moment().subtract(2, 'hour').startOf('hour').fromNow(),
     currentFile: 'test.txt',
     online: true,
-    color: '#b27300'
+    color: 'rgba(178, 115, 0, 1)'
   }, {
     fullName: 'Lukas Keul',
     lastSeen: Moment().subtract(10, 'minute').startOf('hour').fromNow(),
     currentFile: 'Reader.js',
     online: true,
-    color: '#cc99a2'
+    color: 'rgba(204, 153, 162, 1)'
   }, {
     fullName: 'Arne Rolf',
     lastSeen: Moment().subtract(1, 'hour').startOf('hour').fromNow(),
     currentFile: '',
     online: false,
-    color: '#e60000'
+    color: 'rgba(230, 0, 0, 1)'
   }, {
     fullName: 'Linus Helfmann',
     lastSeen: Moment().subtract(2, 'day').startOf('day').fromNow(),
     currentFile: '',
     online: false,
-    color: 'brown'
+    color: 'rgba(39, 204, 50, 1)'
   }
 ];
 

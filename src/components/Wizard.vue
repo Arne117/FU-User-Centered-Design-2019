@@ -67,7 +67,8 @@ export default {
       selectProject: 'Wizard/selectProject',
       setSarosOpenState: 'Saros/setOpenState',
       setInSessionState: 'Saros/setInSessionState',
-      generateChat: 'Chat/generateAllChat'
+      generateChat: 'Chat/generateAllChat',
+      generateComments: 'Chat/generateComments'
     }),
     checkProjectStep(){
       this.errorMsg = '';
@@ -91,6 +92,7 @@ export default {
       this.setSarosOpenState(true)
       this.setInSessionState(true)
       this.generateChat(this.selectedUsers)
+      this.generateComments(this.selectedUsers)
     },
     hide(){
       this.setWizardView('hidden')

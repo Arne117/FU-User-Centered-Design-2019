@@ -4,7 +4,7 @@
     .PageContent
       Iconbar
       Sidebar
-      SourceCode
+      Layout
     Bottombar
 </template>
 
@@ -15,6 +15,7 @@ import SourceCode from './SourceCode'
 import Bottombar from './Bottombar'
 import Saros from './Saros'
 import Iconbar from './Iconbar'
+import Layout from './Layout'
 
 export default {
   name: 'Home',
@@ -24,7 +25,8 @@ export default {
     SourceCode,
     Bottombar,
     Saros,
-    Iconbar
+    Iconbar,
+    Layout
   },
   data () {
     return {}

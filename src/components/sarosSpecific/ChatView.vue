@@ -13,7 +13,7 @@
         span.Chat-username(:style="{ color: getUser(message.user).color || 'black'}" @click="startChat(message.user)")
           | {{shortenName(message.user)}}:&nbsp;
         span {{message.text}}
-    input.Chat-input(v-model="input" @keydown.enter="send")
+    input.Chat-input(v-model="input" @keydown.enter="send" placeholder="Type your message here")
 </template>
 
 <script>

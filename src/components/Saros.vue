@@ -10,7 +10,7 @@
       .Saros-content
         .SarosSideBar
           .SarosSideBar-top
-            .SarosSideBar-item.SarosSideBar-item--icon
+            .SarosSideBar-item.SarosSideBar-item--icon(@mousedown.prevent.stop="drag")
               img.SarosIcon(src='@/assets/saros-logo.png')
             .SarosSideBar-item.SarosSideBar-item--session(
               @click='setSarosView("SessionView")'
@@ -64,6 +64,9 @@ export default {
       setSarosOpenState: 'Saros/setOpenState',
       setSarosView: 'Saros/setActiveView'
     }),
+    drag(e){
+      window.drag(e)
+    }
   }
 }
 </script>
@@ -160,6 +163,7 @@ export default {
         .SarosIcon {
           width 20px
           height 20px
+          cursor move
         }
       }
 

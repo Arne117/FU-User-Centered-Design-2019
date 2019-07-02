@@ -124,12 +124,12 @@ export default {
       justify-content center
       padding .5em
 
-      background-color darken($lightGrey, 30%)
+      background-color darken($lightGrey, 10%)
       border-top 1px solid transparent
       border-bottom 1px solid transparent
 
       &:hover {
-        background-color darken($lightGrey, 20%)
+        background-color darken($lightGrey, 5%)
       }
 
       &.active {

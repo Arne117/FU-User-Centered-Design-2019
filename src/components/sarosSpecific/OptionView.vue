@@ -1,10 +1,10 @@
 <template lang='pug'>
   .Option Options
     ul.Option-list
-      li.Option-item Session name:
-        input(type='text' v-model='_sessionName')
-      li.Option-item.Button(@click="setWizardView('changeUsers')") Add / Remove User
-      li.Option-item.Button(@click="onSessionClose") Leave session
+      //-      li.Option-item Session name:
+      //-    input(type='text' v-model='_sessionName')
+      li.Option-item.OptionButton(@click="setWizardView('changeUsers')") Manage Users
+      li.Option-item.OptionButton(@click="onSessionClose") Leave session
 </template>
 
 <script>
@@ -61,6 +61,16 @@ export default {
     &-item {
       margin .25em 0 0
       cursor pointer
+    }
+  }
+  .OptionButton {
+    background-color darken($lightGrey, 10%)
+    width 100%
+    padding 5px
+    text-align center
+
+    &:hover {
+      background-color darken($lightGrey, 5%)
     }
   }
 </style>

@@ -46,7 +46,7 @@ export default {
       if( parts.length == 1){
         return name;
       }
-      return parts.map(part => part[0]).join(".");
+      return parts.map(part => part[0]).join("");
     },
     send(){
       this.sendMessage(this.input);
@@ -72,7 +72,7 @@ export default {
 
 <style lang='stylus' scoped>
 
-  $inputHeight = 25px;
+  $inputHeight = 34px;
   $tabHeight = 38px;
 
   .Chat {

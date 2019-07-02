@@ -14,10 +14,10 @@
               :class='user.online ? "online" : "" '
               :style='{ backgroundColor: user.color }'
             )
-              | {{ user.fullName[0] }}.
+              | {{ user.fullName.split(" ").map(p => p[0]).join('') }}
           .User-item--right
             .User-name {{ user.fullName }}
-            .User-status(v-if='user.currentFile') In file:
+            .User-status(v-if='user.currentFile') In file: &nbsp;
               a.File-link {{ user.currentFile }}
             .User-status(v-else) Last seen: {{ user.lastSeen }}
         li.User-item(@click="changeUsers")
@@ -102,6 +102,7 @@ export default {
       width 35px
       height @width
       margin-right .25em
+      font-size 14px
 
       border-radius 25px
       background-color $grey

@@ -6,19 +6,19 @@ const state = [
     lastSeen: Moment().subtract(2, 'hour').startOf('hour').fromNow(),
     currentFile: 'test.txt',
     online: true,
-    color: 'orange'
+    color: '#b27300'
   }, {
     fullName: 'Lukas Keul',
     lastSeen: Moment().subtract(10, 'minute').startOf('hour').fromNow(),
     currentFile: 'Reader.js',
     online: true,
-    color: 'pink'
+    color: '#cc99a2'
   }, {
     fullName: 'Arne Rolf',
     lastSeen: Moment().subtract(1, 'hour').startOf('hour').fromNow(),
     currentFile: '',
     online: false,
-    color: 'red'
+    color: '#e60000'
   }, {
     fullName: 'Linus Helfmann',
     lastSeen: Moment().subtract(2, 'day').startOf('day').fromNow(),
@@ -29,12 +29,15 @@ const state = [
 ];
 
 const getters = {
-  getAllUsers: state => state
+  getAllUsers: state => state,
+  getUser: state => userName => state.filter(user => user.fullName == userName)[0] || {}
 };
 
 const actions = {};
 
-const mutations = {};
+const mutations = {
+
+};
 
 
 

@@ -7,8 +7,12 @@
         :class='getActiveTab === tab ? "active" : ""'
         @click='setActiveTab(tab)'
       ) {{ tab }}
-    .Chat-window
-      | Chat with: {{ getActiveTab }}
+    .Chat-window(ref="chatWindow")
+      div(v-for="message of getChat")
+        span.Chat-username(:style="{ color: getUser(message.user).color || 'black'}" @click="startChat(message.user)")
+          | {{shortenName(message.user)}}:&nbsp;
+        span {{message.text}}
+    input.Chat-input(v-model="input" @keydown.enter="send")
 </template>
 
 <script>
@@ -16,27 +20,77 @@ import { mapGetters, mapMutations } from "vuex"
 
 export default {
   name: 'ChatView',
+  data(){
+    return {
+      input: ''
+    }
+  },
   computed: {
     ...mapGetters({
       selectedUsers: 'Wizard/getSelectedUsers',
       getTabs: 'Chat/getTabs',
-      getActiveTab: 'Chat/getActiveTab'
+      getActiveTab: 'Chat/getActiveTab',
+      getChat: 'Chat/getChat',
+      getUser: 'User/getUser'
     })
   },
   methods: {
     ...mapMutations({
-      setActiveTab: 'Chat/setActiveTab'
-    })
+      setActiveTab: 'Chat/setActiveTab',
+      sendMessage: 'Chat/addMessage',
+      addChatTab: 'Chat/addTab',
+    }),
+    shortenName(name){
+      return name == 'You' ? name : name.split(" ").map(part => part[0]).join(".");
+    },
+    send(){
+      this.sendMessage(this.input);
+      this.input = '';
+    },
+    scroll(){
+      const el = this.$refs.chatWindow;
+      el.scrollTop = el.scrollHeight;
+    },
+    startChat(user){
+      this.addChatTab(user)
+      this.setActiveTab(user)
+    }
+  },
+  mounted(){
+    this.scroll();
+  },
+  updated(){
+    this.scroll();
   }
 }
 </script>
 
 <style lang='stylus' scoped>
+
+  $inputHeight = 25px;
+  $tabHeight = 38px;
+
   .Chat {
     width 100%
+    height 100%
+    position relative
 
     &-window {
+      height "calc(100% - %s - %s)" % ($tabHeight $inputHeight)
+      background-color white
       padding .5em
+      overflow auto
+      overflow-wrap: break-word;
+    }
+
+    &-username {
+      font-weight: bold
+      cursor pointer
+    }
+
+    &-input {
+      height $inputHeight
+      width 100%;
     }
   }
 
@@ -44,9 +98,10 @@ export default {
     &-list {
       display flex
       flex-direction row
-      height 38px
+      height $tabHeight
       max-width 75%
       overflow-x auto
+      user-select none
 
       &::-webkit-scrollbar {
         display none
@@ -71,23 +126,14 @@ export default {
       }
 
       &.active {
-        background-color $lightGrey
+        //background-color $lightGrey
+        background-color white
 
         border-left 1px solid $uiGrey
         border-right 1px solid $uiGrey
 
         &:first-child {
           border-left 1px solid transparent
-        }
-
-        &:after {
-          content ''
-          position absolute
-          bottom 0
-          right -1px
-          height 1px
-          width 100%
-          background-color $lightGrey
         }
       }
     }

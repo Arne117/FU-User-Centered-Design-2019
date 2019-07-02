@@ -21,7 +21,7 @@
               @click='setSarosView("ChatView")'
               :class='sarosView === "ChatView" ? "active" : "" '
             )
-              i.fa.fa-comment-o
+              i.fa.fa-comments-o
           .SarosSideBar-bottom
             .SarosSideBar-item.SarosSideBar-item--option(
               @click='setSarosView("OptionView")'

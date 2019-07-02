@@ -3,21 +3,81 @@
     .SourceCode-wrapper Sourcecode
       table.SourceCode-content
         tbody
-          tr(v-for="[index, line] in sourcecode.split('\\n').map((e, i) => [i + 1, e])" :key="index")
-            td.LineNumber {{ index }}
-            td.CodeLine(:class="{'CodeLine-comment': index === 19, 'CodeLine-highlight': index === 27}")
+          tr(v-for="[index, line] in sourcecode.split('\\n').map((e, i) => [i + 1, e])" :key="`${Math.random()}`")
+            td.CommentLine.pointer(
+              v-if="hasComment(index)"
+              title="click to view discussion\ndouble click to close"
+              @click="addComment(index)"
+              @dblclick="removeComment(index)"
+            )
+              i.fa.fa-comment(:style="{color: getColorOfComment(index)}")
+            td.CommentLine(v-else)
+            td.LineNumber.pointer(title="open disussion on this line" @click="addComment(index)") {{ index }}
+            td.CodeLine(:style="{backgroundColor: hasComment(index) ? getColor(index) : 'none'}")
               pre(v-highlightjs='line' contenteditable autocorrect="off" autocapitalize="off" spellcheck="false")
                 code.javascript
 </template>
 
 <script>
 import Code from './code'
+import { mapMutations, mapGetters } from 'vuex';
 
 export default {
   name: 'SourceCode',
   data () {
     return {
       sourcecode: Code
+    }
+  },
+  computed: {
+    ...mapGetters({
+      getUser: 'User/getUser',
+      hasComment: 'Chat/hasComment',
+      getCommentUser: 'Chat/getCommentUser'
+    })
+  },
+  created(){
+    window.updateCode = () => {
+      this.$nextTick(() => this.$forceUpdate());
+    }
+  },
+  methods: {
+    addComment (line) {
+      if(!this.hasComment(line))
+        this.addLine({line, user:'You'});
+      const index = '#' + line
+      this.setSarosOpenState(true);
+      this.setSarosView("ChatView");
+      this.addChatTab(index);
+      this.setActiveTab(index);
+      //for what ever reason vue does not update on new lines
+      this.$forceUpdate();
+    },
+    ...mapMutations({
+      setSarosOpenState: 'Saros/setOpenState',
+      setSarosView: 'Saros/setActiveView',
+      addChatTab: 'Chat/addTab',
+      setActiveTab: 'Chat/setActiveTab',
+      addLine: 'Chat/addLine',
+      removeLine: 'Chat/removeLine'
+    }),
+    getColor(index){
+      const userName = this.getCommentUser(index)
+      const user = this.getUser(userName);
+      if(!user.color)
+        return 'rgba(0,0,0,0.08)'
+      const color = user.color.split(",")
+      color[color.length - 1] = "0.08)";
+      return color.join(',');
+    },
+    getColorOfComment(index){
+      const userName = this.getCommentUser(index)
+      const user = this.getUser(userName);
+      return user.color || '#888';
+    },
+    removeComment(index){
+      this.removeLine(index);
+      this.$forceUpdate();
     }
   }
 }
@@ -29,10 +89,10 @@ export default {
     flex 1
     display flex
 
-    background-color $grey
+    background-color #eee
 
     text-align left
-    color $grey
+    color #000
     &-wrapper {
       width 100%
       overflow-y scroll
@@ -44,19 +104,28 @@ export default {
     }
   }
 
+  .CommentLine {
+    min-width: 20px
+  }
+
   .LineNumber {
-    color #FFF
+    color #000
     padding 0 5px
     font-size 14px
     text-align right
     user-select none
+  }
+
+  .pointer {
+    cursor pointer
     transition background-color 250ms
     &:hover {
-      background-color #111
+      background-color #ccc
     }
   }
 
   .CodeLine {
+    background-color #fff
     width 100%
     padding-top 0px
     padding-bottom 0px

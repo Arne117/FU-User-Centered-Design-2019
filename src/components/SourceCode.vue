@@ -4,6 +4,7 @@
       table.SourceCode-content
         tbody
           tr(v-for="[index, line] in sourcecode.split('\\n').map((e, i) => [i + 1, e])" :key="index")
+            td.CommentLine(@click="addComment($event, index)")
             td.LineNumber {{ index }}
             td.CodeLine(:class="{'CodeLine-comment': index === 19, 'CodeLine-highlight': index === 27}")
               pre(v-highlightjs='line' contenteditable autocorrect="off" autocapitalize="off" spellcheck="false")
@@ -12,6 +13,7 @@
 
 <script>
 import Code from './code'
+import { mapMutations } from 'vuex';
 
 export default {
   name: 'SourceCode',
@@ -19,6 +21,22 @@ export default {
     return {
       sourcecode: Code
     }
+  },
+  methods: {
+    addComment (event, index) {
+      var lnr = "#" + event.target.nextElementSibling.textContent;
+      this.setSarosOpenState(true);
+      this.setSarosView("ChatView");
+      this.addChatTab(lnr);
+      this.setActiveTab(lnr);
+      event.target.nextElementSibling.nextElementSibling.classList.add("Codeline-comment");
+    },
+    ...mapMutations({
+      setSarosOpenState: 'Saros/setOpenState',
+      setSarosView: 'Saros/setActiveView',
+      addChatTab: 'Chat/addTab',
+      setActiveTab: 'Chat/setActiveTab'
+    }),
   }
 }
 </script>
@@ -42,6 +60,10 @@ export default {
       padding 0 .5em
       width 100%
     }
+  }
+
+  .CommentLine {
+    min-width: 20px
   }
 
   .LineNumber {

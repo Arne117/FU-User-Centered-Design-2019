@@ -5,8 +5,9 @@
         v-for='tab in getTabs'
         :key='tab'
         :class='getActiveTab === tab ? "active" : ""'
+        :style="{ color: getUser(tab).color || 'black'}"
         @click='setActiveTab(tab)'
-      ) {{ tab }}
+      ) {{ shortenName(tab) }}
     .Chat-window(ref="chatWindow")
       div(v-for="message of getChat")
         span.Chat-username(:style="{ color: getUser(message.user).color || 'black'}" @click="startChat(message.user)")
@@ -41,7 +42,11 @@ export default {
       addChatTab: 'Chat/addTab',
     }),
     shortenName(name){
-      return name == 'You' ? name : name.split(" ").map(part => part[0]).join(".");
+      const parts = name.split(" ");
+      if( parts.length == 1){
+        return name;
+      }
+      return parts.map(part => part[0]).join(".");
     },
     send(){
       this.sendMessage(this.input);
@@ -116,13 +121,13 @@ export default {
       min-width 50px
       flex-shrink 0
 
-      background-color darken($lightGrey, 30%)
+      background-color darken($lightGrey, 10%)
       border-left 1px solid transparent
       border-right 1px solid transparent
       font-size 14px
 
       &:hover {
-        background-color darken($lightGrey, 20%)
+        background-color darken($lightGrey, 5%)
       }
 
       &.active {

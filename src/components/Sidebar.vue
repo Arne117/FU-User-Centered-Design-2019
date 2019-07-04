@@ -2,11 +2,12 @@
   .Sidebar
     .Sidebar-wrapper
       strong.Sidebar-Title Projects
-      .TreeViewRoot(v-for='proj, index in getAllProjects' :key='proj.name')
+      .TreeViewRoot(v-for='proj, index in getAllProjects' :key='proj.name' :class='proj.name === selectedProject ? "activeSarosProject" : "" ')
         .TreeViewItem(@click="switchOpenState(index)")
           i.fa.fa-folder
           span {{ proj.name }}
-        .TreeViewItem.TreeViewIndent(v-if="proj.isOpen" v-for="file in proj.files" :key="file")
+          span.small(v-show='proj.name === selectedProject') (Active Saros Session)
+        .TreeViewItem.TreeViewIndent(v-if="proj.isOpen || proj.name === selectedProject" v-for="file in proj.files" :key="file")
           i.fa.fa-file
           span {{ file }}
 </template>
@@ -21,6 +22,7 @@ export default {
   },
   computed:{
     ...mapGetters({
+      selectedProject: 'Wizard/getSelectedProject',
       'getAllProjects': 'Project/getAllProjects'
     })
   },
@@ -56,6 +58,10 @@ export default {
   i {
     margin-right 4px
   }
+
+  &.activeSarosProject {
+    background-color rgba(195, 210, 235, .75)
+  }
 }
 
 .TreeViewIndent {
@@ -69,6 +75,12 @@ export default {
   &:hover {
    //filter drop-shadow(0 0 .2rem $green)
     background-color rgba(111, 185, 143, 0.5)
+  }
+
+  .small {
+    margin-left .5em
+    font-size smaller
+    color $grey
   }
 }
 

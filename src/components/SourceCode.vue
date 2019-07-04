@@ -1,6 +1,6 @@
 <template lang='pug'>
   .SourceCode
-    .SourceCode-wrapper Sourcecode
+    .SourceCode-wrapper
       table.SourceCode-content
         tbody
           tr(v-for="[index, line] in sourcecode.split('\\n').map((e, i) => [i + 1, e])" :key="`${Math.random()}`")
@@ -88,6 +88,7 @@ export default {
     height 100%
     flex 1
     display flex
+    padding-top 1.5em
 
     background-color #eee
 

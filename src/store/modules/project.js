@@ -10,7 +10,7 @@ const state = [
       'Reader.js',
       'Writer.js'
     ],
-    isOpen: true
+    isOpen: false
   },
   {
     name: 'Test',

@@ -6,7 +6,7 @@
         .TreeViewItem(@click="switchOpenState(index)")
           i.fa.fa-folder
           span {{ proj.name }}
-          span.small(v-show='proj.name === selectedProject') (Active Saros Session)
+          span.small(v-show='proj.name === selectedProject') Active Saros Session
         .TreeViewItem.TreeViewIndent(v-if="proj.isOpen || proj.name === selectedProject" v-for="file in proj.files" :key="file")
           i.fa.fa-file
           span {{ file }}
@@ -78,8 +78,8 @@ export default {
   }
 
   .small {
-    margin-left .5em
-    font-size smaller
+    margin-left 4.5em
+    font-size 10px
     color $grey
   }
 }

@@ -1,7 +1,7 @@
 <template lang='pug'>
   .SourceCode
     .SourceCode-wrapper
-      table.SourceCode-content
+      table.SourceCode-content(v-if='isOpen')
         tbody
           tr(v-for="[index, line] in sourcecode.split('\\n').map((e, i) => [i + 1, e])" :key="`${Math.random()}`")
             td.CommentLine.pointer(
@@ -59,7 +59,8 @@ export default {
       addChatTab: 'Chat/addTab',
       setActiveTab: 'Chat/setActiveTab',
       addLine: 'Chat/addLine',
-      removeLine: 'Chat/removeLine'
+      removeLine: 'Chat/removeLine',
+      isOpen: 'Saros/isOpen',
     }),
     getColor(index){
       const userName = this.getCommentUser(index)

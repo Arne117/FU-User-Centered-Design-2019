@@ -9,10 +9,12 @@
         @click='setActiveTab(tab)'
       ) {{ shortenName(tab) }}
     .Chat-window(ref="chatWindow")
-      div(v-for="message of getChat")
+      div(v-if="message" v-for="message of getChat")
         span.Chat-username(:style="{ color: getUser(message.user).color || 'black'}" @click="startChat(message.user)")
           | {{shortenName(message.user)}}:&nbsp;
         span {{message.text}}
+      div(v-else)
+        span This a placeholder for a description
     input.Chat-input(v-model="input" @keydown.enter="send" placeholder="Type your message here")
 </template>
 

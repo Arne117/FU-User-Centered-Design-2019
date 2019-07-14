@@ -14,7 +14,7 @@
             ProjectSelector(@next="$refs.sessionWizard.nextTab();")
 
           tab-content(title="Invite Users" icon="fa fa-users" :before-change="checkUserStep")
-            | Choose users to add to this session
+            | Choose users to add to this session from your contacts
             UserSelector
           .errorMessage(v-if="errorMsg") {{ errorMsg }}
 
